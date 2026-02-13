@@ -2,6 +2,8 @@ package com.fenix_laser_mty.backend.modelos;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "direcciones_usuario")
 public class DireccionUsuario {
@@ -135,4 +137,16 @@ public class DireccionUsuario {
                 ", referencia='" + referencia + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof DireccionUsuario that)) return false;
+        return Objects.equals(id_direccion, that.id_direccion) && Objects.equals(usuario, that.usuario) && Objects.equals(calle, that.calle) && Objects.equals(numero_externo, that.numero_externo) && Objects.equals(numero_interno, that.numero_interno) && Objects.equals(colonia, that.colonia) && Objects.equals(codigo_postal, that.codigo_postal) && Objects.equals(ciudad, that.ciudad) && Objects.equals(estado, that.estado) && Objects.equals(referencia, that.referencia);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id_direccion, usuario, calle, numero_externo, numero_interno, colonia, codigo_postal, ciudad, estado, referencia);
+    }
+    
 }
