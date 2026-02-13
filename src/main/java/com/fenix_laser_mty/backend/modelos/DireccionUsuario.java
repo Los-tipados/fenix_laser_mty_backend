@@ -120,5 +120,19 @@ public class DireccionUsuario {
         this.referencia = referencia;
     }
 
-
+    @Override
+    public String toString() {
+        return "DireccionUsuario{" +
+                "id_direccion=" + id_direccion +
+                ", usuario=" + usuario +
+                ", calle='" + calle + '\'' +
+                ", numero_externo='" + numero_externo + '\'' +
+                ", numero_interno='" + numero_interno + '\'' +
+                ", colonia='" + colonia + '\'' +
+                ", codigo_postal='" + codigo_postal + '\'' +
+                ", ciudad='" + ciudad + '\'' +
+                ", estado='" + estado + '\'' +
+                ", referencia='" + referencia + '\'' +
+                '}';
+    }
 }
