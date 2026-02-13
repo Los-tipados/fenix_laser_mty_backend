@@ -33,6 +33,13 @@ public class DireccionUsuario {
     @Column(name = "ciudad")
     private  String ciudad;
 
+    @Column(name = "estado")
+    private String estado;
+
+    @Column(name = "referencia")
+    private String referencia;
+
+
 
 
 }
