@@ -32,6 +32,18 @@ public class Usuario {
     @Column (name ="fecha_registro", updatable = false)
     private LocalDateTime fechaRegistro= LocalDateTime.now();
 
+    public Usuario(Integer idUsuario, String nombre, String correo, String telefono, String password, String rol, LocalDateTime fechaRegistro) {
+        this.idUsuario = idUsuario;
+        this.nombre = nombre;
+        this.correo = correo;
+        this.telefono = telefono;
+        this.password = password;
+        this.rol = rol;
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    public Usuario() {
+    }
 
 
 }
