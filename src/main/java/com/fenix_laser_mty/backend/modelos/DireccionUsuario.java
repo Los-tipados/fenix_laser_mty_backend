@@ -11,8 +11,9 @@ public class DireccionUsuario {
     private Long id_direccion;
 
 
-
-
+    @ManyToOne
+     @JoinColumn(name = "id_usuario")
+    private Usuario usuario;
 
     @Column(name = "calle")
     private String calle;
@@ -22,6 +23,16 @@ public class DireccionUsuario {
 
     @Column(name = "numero_interno")
     private String numero_interno;
+
+    @Column(name = "colonia")
+    private String colonia;
+
+    @Column(name = "codigo_postal")
+    private String codigo_postal;
+
+    @Column(name = "ciudad")
+    private  String ciudad;
+
 
 
 }
