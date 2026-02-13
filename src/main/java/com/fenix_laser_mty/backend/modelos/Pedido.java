@@ -13,10 +13,10 @@ public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "id_pedido", unique = true)
+    @Column (name = "id_pedido", nullable = false)
     private Integer idPedido;
 
-    @ManyToOne (fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn (name = "id_usuario")
     private Integer idUsuario;
 
