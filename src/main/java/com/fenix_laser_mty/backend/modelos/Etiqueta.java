@@ -9,15 +9,15 @@ import java.util.Objects;
 public class Etiqueta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_etiqueta")
+    @Column(name = "id_etiqueta", nullable = false)
     private Integer idEtiqueta;
 
-    @Column(name = "nombre")
-    private String nombre_etiqueta;
+    @Column(name = "nombre", nullable = false)
+    private String nombreEtiqueta;
 
-    public Etiqueta(Integer idEtiqueta, String nombre_etiqueta) {
+    public Etiqueta(Integer idEtiqueta, String nombreEtiqueta) {
         this.idEtiqueta = idEtiqueta;
-        this.nombre_etiqueta = nombre_etiqueta;
+        this.nombreEtiqueta = nombreEtiqueta;
     }
 
     public Etiqueta() {
@@ -31,30 +31,30 @@ public class Etiqueta {
         this.idEtiqueta = idEtiqueta;
     }
 
-    public String getNombre_etiqueta() {
-        return nombre_etiqueta;
+    public String getNombreEtiqueta() {
+        return nombreEtiqueta;
     }
 
-    public void setNombre_etiqueta(String nombre_etiqueta) {
-        this.nombre_etiqueta = nombre_etiqueta;
+    public void setNombreEtiqueta(String nombreEtiqueta) {
+        this.nombreEtiqueta = nombreEtiqueta;
     }
 
     @Override
     public String toString() {
         return "Etiqueta{" +
                 "idEtiqueta=" + idEtiqueta +
-                ", nombre_etiqueta='" + nombre_etiqueta + '\'' +
+                ", nombreEtiqueta='" + nombreEtiqueta + '\'' +
                 '}';
     }
 
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Etiqueta etiqueta)) return false;
-        return Objects.equals(idEtiqueta, etiqueta.idEtiqueta) && Objects.equals(nombre_etiqueta, etiqueta.nombre_etiqueta);
+        return Objects.equals(idEtiqueta, etiqueta.idEtiqueta) && Objects.equals(nombreEtiqueta, etiqueta.nombreEtiqueta);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idEtiqueta, nombre_etiqueta);
+        return Objects.hash(idEtiqueta, nombreEtiqueta);
     }
 }
