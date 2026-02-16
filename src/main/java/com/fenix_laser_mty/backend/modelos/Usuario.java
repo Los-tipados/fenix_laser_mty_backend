@@ -15,16 +15,16 @@ public class Usuario {
     @Column (name = "id_usuario")
     private Integer idUsuario;
 
-    @Column (name = "id_nombre")
+    @Column (name = "nombre", nullable = false)
     private String nombre;
 
-    @Column (name="correo", unique = true, length = 100)
+    @Column (name="correo", nullable = false, unique = true, length = 100)
     private String correo;
 
     @Column(name = "telefono", nullable = false, length = 15)
     private String telefono;
 
-    @Column (name= "password", nullable = false, length = 255)
+    @Column (name= "password", nullable = false)
     private String password;
 
     @Column (name ="rol", length = 20)
