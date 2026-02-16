@@ -9,10 +9,10 @@ import java.util.Objects;
 public class Etiqueta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_etiqueta", nullable = false)
+    @Column(name = "id_etiqueta")
     private Integer idEtiqueta;
 
-    @Column(name = "nombre", nullable = false)
+    @Column(name = "nombre", nullable = false, length = 50)
     private String nombreEtiqueta;
 
     public Etiqueta(Integer idEtiqueta, String nombreEtiqueta) {
