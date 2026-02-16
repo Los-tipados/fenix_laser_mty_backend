@@ -10,14 +10,14 @@ import java.util.Objects;
 public class Pago {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_pago", unique = true)
+    @Column(name = "id_pago")
     private Long idPago;
     @OneToOne
     @JoinColumn(name = "id_pedido", nullable = false)
     private Long idPedido;
     @Column(name = "metodo", nullable = false, length = 50)
     private String metodoPago;
-    @Column(name = "monto",nullable = false, columnDefinition = "Decimal(8, 2)")
+    @Column(name = "monto",nullable = false, columnDefinition = "Decimal(10, 2)")
     private Double monto;
     @Column(name = "estado", length = 30)
     private String estado;
