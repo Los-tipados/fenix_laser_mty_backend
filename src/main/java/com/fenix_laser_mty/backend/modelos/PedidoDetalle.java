@@ -10,7 +10,7 @@ public class PedidoDetalle {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "id_detalle", nullable = false)
+    @Column (name = "id_detalle")
     private Integer idDetalle;
 
     @OneToOne
