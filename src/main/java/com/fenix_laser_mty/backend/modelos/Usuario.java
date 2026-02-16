@@ -28,7 +28,7 @@ public class Usuario {
     private String password;
 
     @Column (name ="rol", length = 20)
-    private  String rol="cliente"; // ojito
+    private  String rol; // ojito
 
     @Column (name ="fecha_registro", updatable = false)
     private LocalDateTime fechaRegistro= LocalDateTime.now();
