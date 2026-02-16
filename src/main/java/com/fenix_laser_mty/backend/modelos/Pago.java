@@ -11,7 +11,7 @@ public class Pago {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pago")
-    private Long idPago;
+    private Integer idPago;
     @OneToOne
     @JoinColumn(name = "id_pedido", nullable = false)
     private Long idPedido;
@@ -28,7 +28,7 @@ public class Pago {
 
     }
 
-    public Pago(Long idPago, Long idPedido, String metodoPago, Double monto, String estado, LocalDateTime fecha) {
+    public Pago(Integer idPago, Long idPedido, String metodoPago, Double monto, String estado, LocalDateTime fecha) {
         this.idPago = idPago;
         this.idPedido = idPedido;
         this.metodoPago = metodoPago;
@@ -37,7 +37,7 @@ public class Pago {
         this.fecha = fecha;
     }
 
-    public Long getIdPago() {
+    public Integer getIdPago() {
         return idPago;
     }
 

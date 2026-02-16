@@ -1,6 +1,7 @@
 package com.fenix_laser_mty.backend.modelos;
 
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
 
 import java.util.Objects;
 
@@ -10,7 +11,7 @@ public class DireccionUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idDireccion")
-    private Long idDireccion;
+    private Integer idDireccion;
 
 
     @ManyToOne
@@ -42,11 +43,11 @@ public class DireccionUsuario {
     private String referencia;
 
 
-    public Long getidDireccion() {
+    public Integer getidDireccion() {
         return idDireccion;
     }
 
-    public void setidDireccion(Long idDireccion) {
+    public void setidDireccion(Integer idDireccion) {
         this.idDireccion = idDireccion;
     }
 
