@@ -15,19 +15,19 @@ public class Producto {
     @Column(name = "id_producto")
     private Integer idProducto;
 
-    @Column(nullable = false, length = 100)
+    @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal precio;
+    @Column(name ="precio", nullable = false, columnDefinition = "Decimal(10, 2)" )
+    private Double precio;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(name = "imagen")
     private String imagen;
 
-    @Column(precision = 2, scale = 1)
+    @Column(name ="rating", columnDefinition = "Decimal(2, 1)")
     private Double rating;
 
     @Column(name = "visible_catalogo")
@@ -62,7 +62,7 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(String nombre, String descripcion, BigDecimal precio) {
+    public Producto(String nombre, String descripcion, Double precio) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
@@ -92,11 +92,11 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
-    public BigDecimal getPrecio() {
+    public Double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(BigDecimal precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
 
