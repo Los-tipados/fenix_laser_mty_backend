@@ -12,11 +12,11 @@ public class ImagenProducto {
     @Column(name = "id_imagen")
     private Integer idImagen;
 
-    @Column(name = "url", nullable = false, columnDefinition = "TEXT")
+    @Column(name = "url", nullable = false)
     private String url;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_producto", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "id_producto")
     private  Producto producto;
 
     public ImagenProducto(Integer idImagen, String url, Producto producto) {
