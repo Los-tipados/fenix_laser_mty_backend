@@ -13,7 +13,7 @@ public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "id_pedido", nullable = false)
+    @Column (name = "id_pedido")
     private Integer idPedido;
 
     @ManyToOne
@@ -23,7 +23,7 @@ public class Pedido {
     @Column (name = "total", nullable = false, columnDefinition = "DECIMAL(10,2)")
     private Double total;
 
-    @Column (name = "estado")
+    @Column (name = "estado", length = 30)
     private String estado;
 
     @Column (name = "fecha", columnDefinition = "DATETIME")
