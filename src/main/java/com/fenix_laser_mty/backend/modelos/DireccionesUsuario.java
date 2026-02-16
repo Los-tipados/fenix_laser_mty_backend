@@ -6,48 +6,48 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "direcciones_usuario")
-public class DireccionUsuario {
+public class DireccionesUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_direccion")
-    private Long id_direccion;
+    @Column(name = "idDireccion")
+    private Long idDireccion;
 
 
     @ManyToOne
      @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
-    @Column(name = "calle")
+    @Column(name = "calle", nullable = false, length = 100)
     private String calle;
 
-    @Column(name = "numero_externo")
+    @Column(name = "numero_externo", nullable = false, length = 10)
     private String numero_externo;
 
-    @Column(name = "numero_interno")
+    @Column(name = "numero_interno", length = 10)
     private String numero_interno;
 
-    @Column(name = "colonia")
+    @Column(name = "colonia", nullable = false, length = 100)
     private String colonia;
 
-    @Column(name = "codigo_postal")
+    @Column(name = "codigo_postal", nullable = false, length = 10)
     private String codigo_postal;
 
-    @Column(name = "ciudad")
+    @Column(name = "ciudad", nullable = false, length = 50)
     private  String ciudad;
 
-    @Column(name = "estado")
+    @Column(name = "estado", nullable = false, length = 50)
     private String estado;
 
     @Column(name = "referencia")
     private String referencia;
 
 
-    public Long getId_direccion() {
-        return id_direccion;
+    public Long getidDireccion() {
+        return idDireccion;
     }
 
-    public void setId_direccion(Long id_direccion) {
-        this.id_direccion = id_direccion;
+    public void setidDireccion(Long idDireccion) {
+        this.idDireccion = idDireccion;
     }
 
     public Usuario getUsuario() {
@@ -125,7 +125,7 @@ public class DireccionUsuario {
     @Override
     public String toString() {
         return "DireccionUsuario{" +
-                "id_direccion=" + id_direccion +
+                "idDireccion=" + idDireccion +
                 ", usuario=" + usuario +
                 ", calle='" + calle + '\'' +
                 ", numero_externo='" + numero_externo + '\'' +
@@ -140,13 +140,13 @@ public class DireccionUsuario {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof DireccionUsuario that)) return false;
-        return Objects.equals(id_direccion, that.id_direccion) && Objects.equals(usuario, that.usuario) && Objects.equals(calle, that.calle) && Objects.equals(numero_externo, that.numero_externo) && Objects.equals(numero_interno, that.numero_interno) && Objects.equals(colonia, that.colonia) && Objects.equals(codigo_postal, that.codigo_postal) && Objects.equals(ciudad, that.ciudad) && Objects.equals(estado, that.estado) && Objects.equals(referencia, that.referencia);
+        if (!(o instanceof DireccionesUsuario that)) return false;
+        return Objects.equals(idDireccion, that.idDireccion) && Objects.equals(usuario, that.usuario) && Objects.equals(calle, that.calle) && Objects.equals(numero_externo, that.numero_externo) && Objects.equals(numero_interno, that.numero_interno) && Objects.equals(colonia, that.colonia) && Objects.equals(codigo_postal, that.codigo_postal) && Objects.equals(ciudad, that.ciudad) && Objects.equals(estado, that.estado) && Objects.equals(referencia, that.referencia);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id_direccion, usuario, calle, numero_externo, numero_interno, colonia, codigo_postal, ciudad, estado, referencia);
+        return Objects.hash(idDireccion, usuario, calle, numero_externo, numero_interno, colonia, codigo_postal, ciudad, estado, referencia);
     }
     
 }
