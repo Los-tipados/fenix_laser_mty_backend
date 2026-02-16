@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "direcciones_usuario")
-public class DireccionesUsuario {
+public class DireccionUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idDireccion")
@@ -140,7 +140,7 @@ public class DireccionesUsuario {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof DireccionesUsuario that)) return false;
+        if (!(o instanceof DireccionUsuario that)) return false;
         return Objects.equals(idDireccion, that.idDireccion) && Objects.equals(usuario, that.usuario) && Objects.equals(calle, that.calle) && Objects.equals(numero_externo, that.numero_externo) && Objects.equals(numero_interno, that.numero_interno) && Objects.equals(colonia, that.colonia) && Objects.equals(codigo_postal, that.codigo_postal) && Objects.equals(ciudad, that.ciudad) && Objects.equals(estado, that.estado) && Objects.equals(referencia, that.referencia);
     }
 
