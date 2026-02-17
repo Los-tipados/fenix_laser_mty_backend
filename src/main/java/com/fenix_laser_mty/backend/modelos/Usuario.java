@@ -2,7 +2,6 @@ package com.fenix_laser_mty.backend.modelos;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 

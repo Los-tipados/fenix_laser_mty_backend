@@ -1,70 +1,65 @@
 package com.fenix_laser_mty.backend.modelos;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.AnyDiscriminatorImplicitValues;
-import org.springframework.boot.autoconfigure.web.WebProperties;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
-@Table (name = "pedidos")
+@Table(name = "pedidos")
 public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "id_pedido")
+    @Column(name = "id_pedido")
     private Integer idPedido;
 
     @ManyToOne
-    @JoinColumn (name = "id_usuario")
-    private Integer idUsuario;
+    @JoinColumn(name = "id_usuario", nullable = false)
+    private Usuario usuario;
 
-    @Column (name = "total", nullable = false, columnDefinition = "DECIMAL(10,2)")
-    private Double total;
+    @Column(nullable = false, precision = 10, scale = 2)
+    private BigDecimal total;
 
-    @Column (name = "estado", length = 30)
+    @Column(length = 30)
     private String estado;
 
-    @Column (name = "fecha", columnDefinition = "DATETIME")
+    @Column(columnDefinition = "DATETIME")
     private LocalDateTime fecha;
 
-    @Column (name = "direccion_envio", nullable = false)
+    @Column(name = "direccion_envio", nullable = false)
     private String direccionEnvio;
 
-    public Pedido(Integer idPedido, Integer idUsuario, Double total, String estado, LocalDateTime fecha, String direccionEnvio) {
-        this.idPedido = idPedido;
-        this.idUsuario = idUsuario;
+    public Pedido() {}
+
+    public Pedido(Usuario usuario, BigDecimal total, String estado, LocalDateTime fecha, String direccionEnvio) {
+        this.usuario = usuario;
         this.total = total;
         this.estado = estado;
         this.fecha = fecha;
         this.direccionEnvio = direccionEnvio;
     }
 
-    public Pedido() {
-    }
+    /* ===== getters & setters ===== */
 
     public Integer getIdPedido() {
         return idPedido;
     }
 
-    public void setIdPedido(Integer idPedido) {
-        this.idPedido = idPedido;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public Integer getIdUsuario() {
-        return idUsuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public void setIdUsuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public Double getTotal() {
+    public BigDecimal getTotal() {
         return total;
     }
 
-    public void setTotal(Double total) {
+    public void setTotal(BigDecimal total) {
         this.total = total;
     }
 
@@ -92,26 +87,28 @@ public class Pedido {
         this.direccionEnvio = direccionEnvio;
     }
 
-    @Override
-    public String toString() {
-        return "Pedido{" +
-                "idPedido=" + idPedido +
-                ", idUsuario=" + idUsuario +
-                ", total=" + total +
-                ", estado='" + estado + '\'' +
-                ", fecha=" + fecha +
-                ", direccionEnvio='" + direccionEnvio + '\'' +
-                '}';
-    }
+    /* ===== equals & hashCode SOLO por PK ===== */
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Pedido pedido)) return false;
-        return Objects.equals(idPedido, pedido.idPedido) && Objects.equals(idUsuario, pedido.idUsuario) && Objects.equals(total, pedido.total) && Objects.equals(estado, pedido.estado) && Objects.equals(fecha, pedido.fecha) && Objects.equals(direccionEnvio, pedido.direccionEnvio);
+        if (this == o) return true;
+        if (!(o instanceof Pedido)) return false;
+        Pedido pedido = (Pedido) o;
+        return Objects.equals(idPedido, pedido.idPedido);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idPedido, idUsuario, total, estado, fecha, direccionEnvio);
+        return Objects.hash(idPedido);
+    }
+
+    @Override
+    public String toString() {
+        return "Pedido{" +
+                "idPedido=" + idPedido +
+                ", total=" + total +
+                ", estado='" + estado + '\'' +
+                ", fecha=" + fecha +
+                '}';
     }
 }
