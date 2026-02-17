@@ -28,9 +28,9 @@ public class UsuarioController {
     public ResponseEntity <Usuario> saveUser (@RequestBody Usuario newUser){
 
         Usuario usuarioByCorreo=usuarioServicio.findByCorreo(newUser.getCorreo());
-        Usuario usuarioById=usuarioServicio.findById(newUser.getIdUsuario());
 
-        if (usuarioById != null || usuarioByCorreo!=null){
+
+        if ( usuarioByCorreo!=null){
             return  new ResponseEntity<>(HttpStatus.CONFLICT);
         }else{
 
