@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "productos")
@@ -143,6 +144,15 @@ public class Producto {
         this.etiquetas = etiquetas;
     }
 
-    
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Producto producto)) return false;
+        return Objects.equals(idProducto, producto.idProducto) && Objects.equals(nombre, producto.nombre) && Objects.equals(descripcion, producto.descripcion) && Objects.equals(precio, producto.precio) && Objects.equals(imagen, producto.imagen) && Objects.equals(rating, producto.rating) && Objects.equals(visibleCatalogo, producto.visibleCatalogo) && Objects.equals(visibleRecomendados, producto.visibleRecomendados) && Objects.equals(categoria, producto.categoria) && Objects.equals(etiquetas, producto.etiquetas) && Objects.equals(imagenes, producto.imagenes) && Objects.equals(pedidoDetalles, producto.pedidoDetalles);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idProducto, nombre, descripcion, precio, imagen, rating, visibleCatalogo, visibleRecomendados, categoria, etiquetas, imagenes, pedidoDetalles);
+    }
 }
 
