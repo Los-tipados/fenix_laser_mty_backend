@@ -2,61 +2,61 @@ package com.fenix_laser_mty.backend.modelos;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
-@Table (name = "pedido_detalle")
+@Table(name = "pedido_detalle")
 public class PedidoDetalle {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "id_detalle")
+    @Column(name = "id_detalle")
     private Integer idDetalle;
 
-    @OneToOne
-    @JoinColumn (name = "id_pedido")
-    private Integer idPedido;
+    @ManyToOne
+    @JoinColumn(name = "id_pedido", nullable = false)
+    private Pedido pedido;
 
     @ManyToOne
-    @JoinColumn (name = "id_producto")
-    private Integer idProducto;
+    @JoinColumn(name = "id_producto", nullable = false)
+    private Producto producto;
 
-    @Column(name = "cantidad", nullable = false)
+    @Column(nullable = false)
     private Integer cantidad;
 
-    @Column(name = "precio_unitario", nullable = false, columnDefinition = "DECIMAL(10,2)")
-    private Double precioUnitario;
+    @Column(name = "precio_unitario", nullable = false, precision = 10, scale = 2)
+    private BigDecimal precioUnitario;
 
-    public PedidoDetalle(Integer idDetalle, Integer idPedido, Integer idProducto, Integer cantidad, Double precioUnitario) {
-        this.idDetalle = idDetalle;
-        this.idPedido = idPedido;
-        this.idProducto = idProducto;
+    public PedidoDetalle() {}
+
+    public PedidoDetalle(Pedido pedido, Producto producto, Integer cantidad, BigDecimal precioUnitario) {
+        this.pedido = pedido;
+        this.producto = producto;
         this.cantidad = cantidad;
         this.precioUnitario = precioUnitario;
     }
 
-    public PedidoDetalle() {
-    }
+    /* ===== getters & setters ===== */
 
     public Integer getIdDetalle() {
         return idDetalle;
     }
 
-
-    public Integer getIdPedido() {
-        return idPedido;
+    public Pedido getPedido() {
+        return pedido;
     }
 
-    public void setIdPedido(Integer idPedido) {
-        this.idPedido = idPedido;
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
-    public Integer getIdProducto() {
-        return idProducto;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public void setIdProducto(Integer idProducto) {
-        this.idProducto = idProducto;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
     public Integer getCantidad() {
@@ -67,33 +67,35 @@ public class PedidoDetalle {
         this.cantidad = cantidad;
     }
 
-    public Double getPrecioUnitario() {
+    public BigDecimal getPrecioUnitario() {
         return precioUnitario;
     }
 
-    public void setPrecioUnitario(Double precioUnitario) {
+    public void setPrecioUnitario(BigDecimal precioUnitario) {
         this.precioUnitario = precioUnitario;
+    }
+
+    /* ===== equals & hashCode (SOLO PK) ===== */
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PedidoDetalle)) return false;
+        PedidoDetalle that = (PedidoDetalle) o;
+        return Objects.equals(idDetalle, that.idDetalle);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idDetalle);
     }
 
     @Override
     public String toString() {
         return "PedidoDetalle{" +
                 "idDetalle=" + idDetalle +
-                ", idPedido=" + idPedido +
-                ", idProducto=" + idProducto +
                 ", cantidad=" + cantidad +
                 ", precioUnitario=" + precioUnitario +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof PedidoDetalle that)) return false;
-        return Objects.equals(idDetalle, that.idDetalle) && Objects.equals(idPedido, that.idPedido) && Objects.equals(idProducto, that.idProducto) && Objects.equals(cantidad, that.cantidad) && Objects.equals(precioUnitario, that.precioUnitario);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(idDetalle, idPedido, idProducto, cantidad, precioUnitario);
     }
 }

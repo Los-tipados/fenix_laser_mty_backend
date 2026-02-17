@@ -1,64 +1,68 @@
 package com.fenix_laser_mty.backend.modelos;
 
 import jakarta.persistence.*;
-
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
 @Table(name = "pagos")
 public class Pago {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pago")
-    private Integer idPago;
-    @OneToOne
+    private Long idPago;
+
+    @ManyToOne
     @JoinColumn(name = "id_pedido", nullable = false)
-    private Long idPedido;
-    @Column(name = "metodo", nullable = false, length = 50)
-    private String metodoPago;
-    @Column(name = "monto",nullable = false, columnDefinition = "Decimal(10, 2)")
-    private Double monto;
-    @Column(name = "estado", length = 30)
-    private String estado;
-    @Column(name = "fecha", columnDefinition = "DATETIME")
-    private LocalDateTime fecha;
+    private Pedido pedido;
 
-    public Pago(){
+    @Column(nullable = false)
+    private String metodo;
 
-    }
+    @Column(nullable = false, precision = 10, scale = 2)
+    private BigDecimal monto;
 
-    public Pago(Integer idPago, Long idPedido, String metodoPago, Double monto, String estado, LocalDateTime fecha) {
-        this.idPago = idPago;
-        this.idPedido = idPedido;
-        this.metodoPago = metodoPago;
-        this.monto = monto;
-        this.estado = estado;
-        this.fecha = fecha;
-    }
+    @Column
+    private String estado = "pagado";
 
-    public Integer getIdPago() {
+    @Column(name = "fecha")
+    private LocalDateTime fecha = LocalDateTime.now();
+
+    public Pago() {}
+
+    /* ===== getters & setters ===== */
+
+    public Long getIdPago() {
         return idPago;
     }
 
-
-    public Long getIdPedido() {
-        return idPedido;
+    public void setIdPago(Long idPago) {
+        this.idPago = idPago;
     }
 
-    public String getMetodoPago() {
-        return metodoPago;
+    public Pedido getPedido() {
+        return pedido;
     }
 
-    public void setMetodoPago(String metodoPago) {
-        this.metodoPago = metodoPago;
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
-    public Double getMonto() {
+    public String getMetodo() {
+        return metodo;
+    }
+
+    public void setMetodo(String metodo) {
+        this.metodo = metodo;
+    }
+
+    public BigDecimal getMonto() {
         return monto;
     }
 
-    public void setMonto(Double monto) {
+    public void setMonto(BigDecimal monto) {
         this.monto = monto;
     }
 
@@ -78,27 +82,28 @@ public class Pago {
         this.fecha = fecha;
     }
 
+    /* ===== equals & hashCode ===== */
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Pago pago)) return false;
-        return Objects.equals(idPago, pago.idPago) && Objects.equals(idPedido, pago.idPedido) && Objects.equals(metodoPago, pago.metodoPago) && Objects.equals(monto, pago.monto) && Objects.equals(estado, pago.estado) && Objects.equals(fecha, pago.fecha);
+        if (!(o instanceof Pago)) return false;
+        Pago pago = (Pago) o;
+        return Objects.equals(idPago, pago.idPago);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idPago, idPedido, metodoPago, monto, estado, fecha);
+        return Objects.hash(idPago);
     }
 
     @Override
     public String toString() {
         return "Pago{" +
                 "idPago=" + idPago +
-                ", idPedido=" + idPedido +
-                ", metodoPago='" + metodoPago + '\'' +
+                ", metodo='" + metodo + '\'' +
                 ", monto=" + monto +
                 ", estado='" + estado + '\'' +
-                ", fecha=" + fecha +
                 '}';
     }
 }
