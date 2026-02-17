@@ -1,4 +1,4 @@
-package com.fenix_laser_mty.backend;
+package com.fenix_laser_mty.backend.excepciones;
 
 public class UsuarioNotFoundException extends  RuntimeException{
 

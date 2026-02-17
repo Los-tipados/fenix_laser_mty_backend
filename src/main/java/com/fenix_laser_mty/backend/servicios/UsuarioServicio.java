@@ -1,6 +1,6 @@
 package com.fenix_laser_mty.backend.servicios;
 
-import com.fenix_laser_mty.backend.UsuarioNotFoundException;
+import com.fenix_laser_mty.backend.excepciones.UsuarioNotFoundException;
 import com.fenix_laser_mty.backend.modelos.Usuario;
 import com.fenix_laser_mty.backend.repositorios.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +45,30 @@ public class UsuarioServicio {
 
     }
 
+    //metodo para eliminar instancias
+    public void deletUsuario(Integer id){
+
+        if (usuarioRepository.existsById(id)){
+            usuarioRepository.deleteById(id);
+        }else{
+            throw new UsuarioNotFoundException(id);
+        }
+
+    }
+
+    public Usuario updateUsuario(Usuario usuario, Integer id){
+
+        return usuarioRepository.findById(id)
+                .map(usuarioData ->{
+                    usuarioData.setNombre(usuario.getNombre());
+                    usuarioData.setCorreo(usuario.getCorreo());
+                    usuarioData.setPassword(usuario.getPassword());
+
+                    return  usuarioRepository.save(usuarioData);
+
+                }).orElseThrow(()-> new UsuarioNotFoundException(id));
+
+    }
 
     
     
