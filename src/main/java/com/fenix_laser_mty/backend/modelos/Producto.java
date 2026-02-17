@@ -63,7 +63,29 @@ public class Producto {
         this.precio = precio;
     }
 
-    /* getters & setters */
+    public Integer getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(Integer idProducto) {
+        this.idProducto = idProducto;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
     public BigDecimal getPrecio() {
         return precio;
@@ -73,6 +95,14 @@ public class Producto {
         this.precio = precio;
     }
 
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
     public BigDecimal getRating() {
         return rating;
     }
@@ -80,5 +110,39 @@ public class Producto {
     public void setRating(BigDecimal rating) {
         this.rating = rating;
     }
+
+    public Boolean getVisibleCatalogo() {
+        return visibleCatalogo;
+    }
+
+    public void setVisibleCatalogo(Boolean visibleCatalogo) {
+        this.visibleCatalogo = visibleCatalogo;
+    }
+
+    public Boolean getVisibleRecomendados() {
+        return visibleRecomendados;
+    }
+
+    public void setVisibleRecomendados(Boolean visibleRecomendados) {
+        this.visibleRecomendados = visibleRecomendados;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public List<Etiqueta> getEtiquetas() {
+        return etiquetas;
+    }
+
+    public void setEtiquetas(List<Etiqueta> etiquetas) {
+        this.etiquetas = etiquetas;
+    }
+
+    
 }
 
