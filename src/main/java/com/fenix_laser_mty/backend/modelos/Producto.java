@@ -154,5 +154,23 @@ public class Producto {
     public int hashCode() {
         return Objects.hash(idProducto, nombre, descripcion, precio, imagen, rating, visibleCatalogo, visibleRecomendados, categoria, etiquetas, imagenes, pedidoDetalles);
     }
+
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "idProducto=" + idProducto +
+                ", nombre='" + nombre + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", precio=" + precio +
+                ", imagen='" + imagen + '\'' +
+                ", rating=" + rating +
+                ", visibleCatalogo=" + visibleCatalogo +
+                ", visibleRecomendados=" + visibleRecomendados +
+                ", categoria=" + categoria +
+                ", etiquetas=" + etiquetas +
+                ", imagenes=" + imagenes +
+                ", pedidoDetalles=" + pedidoDetalles +
+                '}';
+    }
 }
 
