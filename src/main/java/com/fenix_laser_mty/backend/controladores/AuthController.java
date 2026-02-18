@@ -3,6 +3,7 @@ package com.fenix_laser_mty.backend.controladores;
 
 import com.fenix_laser_mty.backend.dto.LoginRequest;
 import com.fenix_laser_mty.backend.dto.LoginResponse;
+import com.fenix_laser_mty.backend.dto.RecuRequest;
 import com.fenix_laser_mty.backend.modelos.Usuario;
 import com.fenix_laser_mty.backend.servicios.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,27 @@ public class AuthController {
             true
     );
    return ResponseEntity.ok(response);
+}
+
+@PutMapping ("/reset-password")
+    public ResponseEntity<?> resetPassword(@RequestBody RecuRequest request){
+
+// Llamamos al service que devuelve Usuario o null
+    Usuario usuarioActualizado = usuarioServicio.updatePassword(
+            request.getCorreo(),
+            request.getPassword()
+    );
+
+    // 2. Si es null, el correo no existía
+    if (usuarioActualizado == null) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body("Error: No se encontró ningún usuario registrado con el correo: " + request.getCorreo());
+    }
+
+    // 3. Si todo salió bien
+    return ResponseEntity.ok("¡Éxito! La contraseña ha sido actualizada correctamente.");
+
 }
 
 }
