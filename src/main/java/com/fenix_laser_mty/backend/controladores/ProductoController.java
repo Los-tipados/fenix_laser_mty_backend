@@ -48,6 +48,16 @@ public class ProductoController {
 
     }
 
+    @PutMapping ("/update-producto/{id}")
+    public ResponseEntity <Producto> updateProduct (@RequestBody Producto producto, @PathVariable Integer id){
+
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(productoServicio.updateProducto(producto,id));
+        }catch (ProductoNotFoundException e){
+            return ResponseEntity.notFound().build();
+        }
+    }
 
 
 
