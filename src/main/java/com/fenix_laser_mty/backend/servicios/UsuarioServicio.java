@@ -71,6 +71,14 @@ public class UsuarioServicio {
 
     }
 
+    public Usuario updatePassword(String correo, String nuevaPassword) {
+        Usuario usuario = usuarioRepository.findByCorreo(correo);
+        if (usuario != null) {
+            usuario.setPassword(nuevaPassword);
+            return usuarioRepository.save(usuario);
+        }
+        return null;
+    }
 
 
     
