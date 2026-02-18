@@ -6,33 +6,50 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
-@Table (name ="usuarios")
+@Table(name = "usuarios")
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "id_usuario")
+    @Column(name = "id_usuario")
     private Integer idUsuario;
 
-    @Column (name = "nombre", nullable = false)
+    @Column(name = "nombre", nullable = false)
     private String nombre;
 
-    @Column (name="correo", nullable = false, unique = true, length = 100)
+    @Column(name = "correo", nullable = false, unique = true, length = 100)
     private String correo;
 
     @Column(name = "telefono", nullable = false, length = 15)
     private String telefono;
 
-    @Column (name= "password", nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column (name ="rol", length = 20)
-    private  String rol; // ojito
+    @Column(name = "rol", length = 20)
+    private String rol;
 
-    @Column (name ="fecha_registro", updatable = false)
-    private LocalDateTime fechaRegistro= LocalDateTime.now();
+    @Column(name = "fecha_registro", updatable = false)
+    private LocalDateTime fechaRegistro;
 
-    public Usuario(Integer idUsuario, String nombre, String correo, String telefono, String password, String rol, LocalDateTime fechaRegistro) {
+    // =============================================
+    //  SE EJECUTA AUTOMÁTICAMENTE ANTES DE INSERT
+    // =============================================
+    @PrePersist
+    public void prePersist() {
+        if (this.rol == null || this.rol.isEmpty()) {
+            this.rol = "Cliente";                  // Rol por defecto
+        }
+        if (this.fechaRegistro == null) {
+            this.fechaRegistro = LocalDateTime.now(); // Fecha automática
+        }
+    }
+
+    // =============================================
+    //  CONSTRUCTORES
+    // =============================================
+    public Usuario(Integer idUsuario, String nombre, String correo, String telefono,
+                   String password, String rol, LocalDateTime fechaRegistro) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.correo = correo;
@@ -42,9 +59,11 @@ public class Usuario {
         this.fechaRegistro = fechaRegistro;
     }
 
-    public Usuario() {
-    }
+    public Usuario() {}
 
+    // =============================================
+    //  GETTERS Y SETTERS
+    // =============================================
     public Integer getIdUsuario() {
         return idUsuario;
     }
@@ -97,6 +116,9 @@ public class Usuario {
         this.fechaRegistro = fechaRegistro;
     }
 
+    // =============================================
+    //  toString, equals, hashCode
+    // =============================================
     @Override
     public String toString() {
         return "Usuario{" +
@@ -113,7 +135,13 @@ public class Usuario {
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Usuario usuario)) return false;
-        return Objects.equals(idUsuario, usuario.idUsuario) && Objects.equals(nombre, usuario.nombre) && Objects.equals(correo, usuario.correo) && Objects.equals(telefono, usuario.telefono) && Objects.equals(password, usuario.password) && Objects.equals(rol, usuario.rol) && Objects.equals(fechaRegistro, usuario.fechaRegistro);
+        return Objects.equals(idUsuario, usuario.idUsuario) &&
+                Objects.equals(nombre, usuario.nombre) &&
+                Objects.equals(correo, usuario.correo) &&
+                Objects.equals(telefono, usuario.telefono) &&
+                Objects.equals(password, usuario.password) &&
+                Objects.equals(rol, usuario.rol) &&
+                Objects.equals(fechaRegistro, usuario.fechaRegistro);
     }
 
     @Override
