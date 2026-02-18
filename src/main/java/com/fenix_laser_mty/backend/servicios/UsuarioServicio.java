@@ -62,6 +62,7 @@ public class UsuarioServicio {
                 .map(usuarioData ->{
                     usuarioData.setNombre(usuario.getNombre());
                     usuarioData.setCorreo(usuario.getCorreo());
+                    usuarioData.setTelefono(usuario.getTelefono());
                     usuarioData.setPassword(usuario.getPassword());
 
                     return  usuarioRepository.save(usuarioData);

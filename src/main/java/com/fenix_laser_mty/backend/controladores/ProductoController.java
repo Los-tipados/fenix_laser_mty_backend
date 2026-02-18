@@ -35,7 +35,7 @@ public class ProductoController {
 
     }
 
-    @GetMapping ("/delete-product/{id}")
+    @DeleteMapping ("/delete-product/{id}")
     public ResponseEntity <Producto> deleteById (@PathVariable Integer id){
 
         try{
