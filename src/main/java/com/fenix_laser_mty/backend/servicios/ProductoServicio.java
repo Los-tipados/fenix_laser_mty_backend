@@ -31,7 +31,7 @@ public class ProductoServicio {
 
     //metodo abstracto a la realidad
     public Producto findByNombre(String nombreProducto) {
-        return productoRepository.findByNombreProducto(nombreProducto);
+        return productoRepository.findBynombre(nombreProducto);
 
     }
 

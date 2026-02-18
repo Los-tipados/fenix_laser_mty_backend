@@ -1,5 +1,6 @@
 package com.fenix_laser_mty.backend.controladores;
 
+import com.fenix_laser_mty.backend.excepciones.ProductoNotFoundException;
 import com.fenix_laser_mty.backend.modelos.Producto;
 import com.fenix_laser_mty.backend.servicios.ProductoServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,20 @@ public class ProductoController {
                 .body(productoServicio.createProducto(newProduct));
 
     }
+
+    @GetMapping ("/delete-product/{id}")
+    public ResponseEntity <Producto> deleteById (@PathVariable Integer id){
+
+        try{
+            productoServicio.deleteProducto(id);
+            return ResponseEntity.noContent().build();
+        }catch (ProductoNotFoundException e){
+
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+    }
+
 
 
 
