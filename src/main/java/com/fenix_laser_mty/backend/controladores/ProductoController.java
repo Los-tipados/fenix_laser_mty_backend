@@ -26,7 +26,7 @@ public class ProductoController {
     @GetMapping("/products")
     public List <Producto> findAll(){return productoServicio.getProductos();}
 
-    @PostMapping ("/new-product/")
+    @PostMapping ("/new-product")
     public ResponseEntity<Producto> saveUser (@RequestBody Producto newProduct){
 
         //no se hace validacion si nos compran la pagina si
