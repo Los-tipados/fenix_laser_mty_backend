@@ -69,4 +69,10 @@ public class AuthController {
 
 }
 
+ @GetMapping("/check-email")
+ public ResponseEntity<Boolean> verificarCorreo(@RequestParam String correo) {
+    boolean existe = usuarioServicio.existePorCorreo(correo);
+    return ResponseEntity.ok(existe);
+ }
+
 }
