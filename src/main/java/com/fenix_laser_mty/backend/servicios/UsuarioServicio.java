@@ -79,7 +79,10 @@ public class UsuarioServicio {
         }
         return null;
     }
-
+    
+    public boolean existePorCorreo(String correo) {
+        return usuarioRepository.findByCorreo(correo) != null;
+    }
 
     
     
