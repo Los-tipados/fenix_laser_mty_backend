@@ -69,10 +69,11 @@ public class AuthController {
 
 }
 
- @GetMapping("/check-email")
- public ResponseEntity<Boolean> verificarCorreo(@RequestParam String correo) {
-    boolean existe = usuarioServicio.existePorCorreo(correo);
-    return ResponseEntity.ok(existe);
- }
+    @GetMapping("/check-email")
+    public ResponseEntity<?> verificarCorreo(@RequestParam String correo) {
+        boolean existe = usuarioServicio.existePorCorreo(correo);
+        // Devolvemos un objeto con una llave "data" o "exists"
+        return ResponseEntity.ok(java.util.Collections.singletonMap("exists", existe));
+    }
 
 }
